@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface INetworkDevicesService {
 
-    @GET("6ea7ad0880805c331d8d67cff30a0fec/raw/74fb2456e9e192f7dfee6d6bf602cef3e3064c09/devices.json")
+    @GET("6ea7ad0880805c331d8d67cff30a0fec/raw/55f176c1e21feb5f6d9123a0e759089ac7900de4/devices.json")
     suspend fun fetchDevices() : List<DeviceModel>
 }

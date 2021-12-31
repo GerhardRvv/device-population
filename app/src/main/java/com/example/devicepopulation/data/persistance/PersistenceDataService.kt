@@ -8,12 +8,11 @@ class PersistenceDataService @Inject constructor(
     private val deviceDao: DeviceDao
 ) : IDataService {
 
+    override suspend fun fetchDevices() = deviceDao.getDeviceList()
+
     override suspend fun insertDevices(devices: List<DeviceModel>) =
         deviceDao.insertDeviceList(devices)
 
-    override suspend fun fetchDeviceByName(name_: String) = deviceDao.fetchDeviceByName(name_)
-
-    override suspend fun fetchDevices() = deviceDao.getDeviceList()
-
+    override suspend fun fetchDeviceById(id: Long) = deviceDao.fetchDeviceById(id)
 
 }

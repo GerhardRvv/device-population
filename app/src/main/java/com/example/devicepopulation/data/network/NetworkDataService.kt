@@ -14,7 +14,7 @@ class NetworkDataService @Inject constructor(
         throw NotImplementedError()
     }
 
-    override suspend fun fetchDeviceByName(name_: String): DeviceModel {
+    override suspend fun fetchDeviceById(id: Long): DeviceModel? {
         throw NotImplementedError()
     }
 }

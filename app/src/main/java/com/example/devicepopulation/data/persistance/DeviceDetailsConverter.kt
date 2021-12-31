@@ -9,16 +9,16 @@ import com.squareup.moshi.Types
 class DeviceDetailsConverter {
 
     @TypeConverter
-    fun fromStringToList(value: String): DeviceDetailsModel?{
+    fun fromStringToList(value: String): List<DeviceDetailsModel>?{
         return getMoshiAdapter().fromJson(value)
     }
 
     @TypeConverter
-    fun fromListToString(details: DeviceDetailsModel): String{
-        return getMoshiAdapter().toJson(details)
+    fun fromListToString(list: List<DeviceDetailsModel>): String{
+        return getMoshiAdapter().toJson(list)
     }
 
-    private fun getMoshiAdapter() : JsonAdapter<DeviceDetailsModel> {
+    private fun getMoshiAdapter() : JsonAdapter<List<DeviceDetailsModel>> {
         val moshi = Moshi.Builder().build()
         val type = Types.newParameterizedType(
             MutableList::class.java,
