@@ -11,5 +11,5 @@ data class DeviceModel(
     val name : String,
     val status : String,
     val image : String,
-    val details : DeviceDetailsModel
+    val details : List<DeviceDetailsModel>
 )
