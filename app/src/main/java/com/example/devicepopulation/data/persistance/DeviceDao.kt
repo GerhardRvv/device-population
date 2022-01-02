@@ -18,4 +18,7 @@ interface DeviceDao {
 
     @Query("SELECT * FROM DeviceModel WHERE id = :id")
     suspend fun fetchDeviceById(id: Long) : DeviceModel?
+
+    @Query("SELECT * FROM DeviceModel WHERE name LIKE '%' || :name || '%'")
+    suspend fun fetchDeviceByName(name: String) : List<DeviceModel>?
 }

@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/AndroidProjects/device-population/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/AndroidProjects/device-population/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/device-population/app/src/main/res/drawable/ic_menu.xml" value="0.1" />
+        <entry key="..\:/AndroidProjects/device-population/app/src/main/res/drawable/zero_results_state.xml" value="0.2" />
       </map>
     </option>
   </component>

@@ -1,7 +1,5 @@
 package com.example.devicepopulation.ui.theme
 
-import androidx.compose.material.darkColors
-import androidx.compose.material.lightColors
 import androidx.compose.ui.graphics.Color
 
 val Shadow11 = Color(0xff001787)
@@ -73,33 +71,3 @@ val FunctionalGrey = Color(0xfff6f6f6)
 val FunctionalDarkGrey = Color(0xff2e2e2e)
 
 const val AlphaNearOpaque = 0.95f
-
-//val DarkColorPalette = darkColors(
-//    primary= Ocean11,
-//    primaryVariant= Rose11,
-//    secondary= Ocean5,
-//    secondaryVariant= Rose5,
-//    background= Neutral0,
-//    surface= Neutral4,
-//    error= FunctionalRed,
-//    onPrimary= Lavender11,
-//    onSecondary= Shadow11,
-//    onBackground= Neutral3,
-//    onSurface= FunctionalGreen,
-//    onError= FunctionalRed
-//)
-//
-//val LightColorPalette = lightColors(
-//    primary= Ocean11,
-//    primaryVariant= Rose11,
-//    secondary= Ocean5,
-//    secondaryVariant= Rose5,
-//    background= Neutral0,
-//    surface= Neutral4,
-//    error= FunctionalRed,
-//    onPrimary= Lavender11,
-//    onSecondary= Shadow11,
-//    onBackground= Neutral3,
-//    onSurface= FunctionalGreen,
-//    onError= FunctionalRed
-//)

@@ -4,7 +4,6 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -12,12 +11,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.example.devicepopulation.ui.theme.DevicePopulationTheme
+import com.example.devicepopulation.ui.theme.DeviceAppTheme
 
 @Composable
 fun DevicePopulationDivider(
     modifier: Modifier = Modifier,
-    color: Color = MaterialTheme.colors.background,
+    color: Color = DeviceAppTheme.colors.uiBorder,
     thickness: Dp = 1.dp,
     startIndent: Dp = 0.dp
 ) {
@@ -35,7 +34,7 @@ private const val DividerAlpha = 0.12f
 @Preview("dark theme", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 private fun DividerPreview() {
-    DevicePopulationTheme {
+    DeviceAppTheme {
         Box(Modifier.size(height = 10.dp, width = 100.dp)) {
             DevicePopulationDivider(Modifier.align(Alignment.Center))
         }

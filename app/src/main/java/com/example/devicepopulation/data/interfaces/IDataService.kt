@@ -10,4 +10,6 @@ interface IDataService {
     suspend fun insertDevices(devices: List<DeviceModel>)
 
     suspend fun fetchDeviceById(id: Long): DeviceModel?
+
+    suspend fun fetchDeviceByName(name: String): List<DeviceModel>?
 }

@@ -8,7 +8,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.devicepopulation"
+        applicationId "com.gerhard.devicepopulation"
         minSdk 26
         targetSdk 31
         versionCode 1
@@ -18,6 +18,8 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+
+
     }
 
     buildTypes {

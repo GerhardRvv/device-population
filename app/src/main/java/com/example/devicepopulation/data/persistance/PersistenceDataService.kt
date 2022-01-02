@@ -15,4 +15,5 @@ class PersistenceDataService @Inject constructor(
 
     override suspend fun fetchDeviceById(id: Long) = deviceDao.fetchDeviceById(id)
 
+    override suspend fun fetchDeviceByName(name: String): List<DeviceModel>? = deviceDao.fetchDeviceByName(name)
 }
