@@ -18,6 +18,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.devicepopulation.R
 import com.example.devicepopulation.data.models.DeviceDetailsModel
 import com.example.devicepopulation.data.models.DeviceModel
+import com.example.devicepopulation.ui.theme.DeviceAppTheme
 
 @Composable
 fun DeviceCardComponent(
@@ -27,13 +28,12 @@ fun DeviceCardComponent(
     modifier: Modifier = Modifier
 ) {
     Box(Modifier.padding(4.dp)) {
-    DevicePopulationSurface(
-        shape = MaterialTheme.shapes.small,
-        color = MaterialTheme.colors.surface,
-        contentColor = MaterialTheme.colors.primary,
-        elevation = 4.dp
-    ) {
-
+        DevicePopulationSurface(
+            shape = MaterialTheme.shapes.small,
+            color = DeviceAppTheme.colors.uiBackground,
+            contentColor = DeviceAppTheme.colors.textPrimary,
+            elevation = 4.dp
+        ) {
             ConstraintLayout(
                 modifier = modifier
                     .fillMaxWidth()
@@ -68,7 +68,7 @@ fun DeviceCardComponent(
                 Text(
                     text = device.name,
                     style = MaterialTheme.typography.subtitle1,
-                    color = MaterialTheme.colors.onSecondary,
+                    color = DeviceAppTheme.colors.textPrimary,
                     modifier = Modifier.constrainAs(name) {
                         linkTo(
                             start = image.end,
@@ -82,7 +82,7 @@ fun DeviceCardComponent(
                 Text(
                     text = device.type,
                     style = MaterialTheme.typography.body1,
-                    color = MaterialTheme.colors.error,
+                    color = DeviceAppTheme.colors.textPrimary,
                     modifier = Modifier.constrainAs(tag) {
                         linkTo(
                             start = image.end,
@@ -103,7 +103,7 @@ fun DeviceCardComponent(
                 Text(
                     text = device.status,
                     style = MaterialTheme.typography.subtitle1,
-                    color = MaterialTheme.colors.primary,
+                    color = DeviceAppTheme.colors.textPrimary,
                     modifier = Modifier.constrainAs(price) {
                         linkTo(
                             start = image.end,
@@ -133,7 +133,6 @@ fun DeviceCardComponent(
             }
         }
     }
-
 }
 
 @Preview

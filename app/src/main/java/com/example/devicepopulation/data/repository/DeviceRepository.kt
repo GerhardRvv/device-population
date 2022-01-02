@@ -53,4 +53,14 @@ class DeviceRepository @Inject constructor(
             null
         }
     }
+
+    suspend fun fetchDeviceByName(deviceName: String?): List<DeviceModel>? {
+        if (deviceName == null) return null
+        return try {
+            persistenceDataService.fetchDeviceByName(deviceName)
+        } catch (e: Exception) {
+            Log.d("Error", "$e")
+            null
+        }
+    }
 }

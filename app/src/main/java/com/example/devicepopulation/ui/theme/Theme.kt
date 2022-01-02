@@ -8,14 +8,14 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
-private val LightColorPalette = DevicePopulationColors(
+val LightColorPalette = DevicePopulationColors(
     brand = Shadow5,
     brandSecondary = Ocean3,
     uiBackground = Neutral0,
@@ -40,7 +40,7 @@ private val LightColorPalette = DevicePopulationColors(
     isDark = false
 )
 
-private val DarkColorPalette = DevicePopulationColors(
+val DarkColorPalette = DevicePopulationColors(
     brand = Shadow1,
     brandSecondary = Ocean2,
     uiBackground = Neutral8,
@@ -68,7 +68,7 @@ private val DarkColorPalette = DevicePopulationColors(
 )
 
 @Composable
-fun DevicePopulationTheme(
+fun DeviceAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
@@ -77,7 +77,7 @@ fun DevicePopulationTheme(
     val sysUiController = rememberSystemUiController()
     SideEffect {
         sysUiController.setSystemBarsColor(
-            color = colors.brand.copy(alpha = AlphaNearOpaque)
+            color = colors.uiBackground.copy(alpha = AlphaNearOpaque)
         )
     }
 
@@ -91,7 +91,7 @@ fun DevicePopulationTheme(
     }
 }
 
-object DevicePopulationTheme {
+object DeviceAppTheme {
     val colors: DevicePopulationColors
         @Composable
         get() = LocalDevicePopulationColors.current
@@ -264,8 +264,6 @@ fun ProvideDevicePopulationColors(
     colorPalette.update(colors)
     CompositionLocalProvider(LocalDevicePopulationColors provides colorPalette, content = content)
 }
-
-
 
 private val LocalDevicePopulationColors = staticCompositionLocalOf<DevicePopulationColors> {
     error("Color not found")

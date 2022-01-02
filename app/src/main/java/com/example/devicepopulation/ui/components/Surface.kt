@@ -5,7 +5,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.material.LocalContentColor
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
@@ -18,7 +17,7 @@ import androidx.compose.ui.graphics.compositeOver
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
-import com.example.devicepopulation.ui.theme.DevicePopulationTheme
+import com.example.devicepopulation.ui.theme.DeviceAppTheme
 import kotlin.math.ln
 
 /**
@@ -29,8 +28,8 @@ import kotlin.math.ln
 fun DevicePopulationSurface(
     modifier: Modifier = Modifier,
     shape: Shape = RectangleShape,
-    color: Color = MaterialTheme.colors.background,
-    contentColor: Color = MaterialTheme.colors.onBackground,
+    color: Color = DeviceAppTheme.colors.uiFloated,
+    contentColor: Color = DeviceAppTheme.colors.textSecondary,
     border: BorderStroke? = null,
     elevation: Dp = 0.dp,
     content: @Composable () -> Unit

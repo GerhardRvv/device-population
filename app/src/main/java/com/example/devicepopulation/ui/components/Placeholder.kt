@@ -1,23 +1,24 @@
 package com.example.devicepopulation.ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
+import coil.compose.rememberImagePainter
 import com.example.devicepopulation.R
+
+import com.example.devicepopulation.ui.theme.DeviceAppTheme
 
 /**
  * Simple list item row which displays an image and text.
@@ -28,59 +29,65 @@ fun Placeholder(
     modifier: Modifier = Modifier,
     childModifier: Modifier = Modifier,
 ) {
-    ConstraintLayout(
+    Column(Modifier.padding(4.dp)) {
+    DevicePopulationSurface(
+        shape = MaterialTheme.shapes.small,
+        color = DeviceAppTheme.colors.uiBackground,
+        elevation = 2.dp,
         modifier = modifier
-            .fillMaxWidth()
-            .padding(horizontal = 24.dp)
-    ) {
-        val ( image, name, button) = createRefs()
-        createVerticalChain(name, chainStyle = ChainStyle.Packed)
+        ) {
+        ConstraintLayout(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(horizontal = 24.dp)
+        ) {
+            val (image, name, button) = createRefs()
+            createVerticalChain(name, chainStyle = ChainStyle.Packed)
 
-        Image(
-            painter = painter,
-            contentDescription = null,
-            modifier = childModifier
-                .size(100.dp)
-                .constrainAs(image) {
-                    linkTo(
-                        top = parent.top,
-                        topMargin = 16.dp,
-                        bottom = parent.bottom,
-                        bottomMargin = 16.dp
-                    )
-                    start.linkTo(parent.start)
-                }
-        )
-        Image(
-            painter = painter,
-            contentDescription = null,
-            modifier = childModifier.constrainAs(name) {
-                linkTo(
-                    start = image.end,
-                    startMargin = 16.dp,
-                    end = button.start,
-                    endMargin = 16.dp,
-                    bias = 0f
+            DevicePopulationSurface(
+                shape = CircleShape,
+                modifier = modifier
+            ) {
+                Image(
+                    painter = painter,
+                    contentDescription = null,
+                    modifier = childModifier
+                        .size(100.dp)
+                        .constrainAs(image) {
+                            linkTo(
+                                top = parent.top,
+                                topMargin = 16.dp,
+                                bottom = parent.bottom,
+                                bottomMargin = 16.dp
+                            )
+                            start.linkTo(parent.start)
+                        },
+                    contentScale = ContentScale.Crop,
+                    alignment = Alignment.Center
+                )
+                Image(
+                    painter = painter,
+                    contentDescription = null,
+                    modifier = childModifier.constrainAs(name) {
+                        linkTo(
+                            start = image.end,
+                            end = parent.end,
+                            startMargin = 16.dp
+                        )
+                    }
                 )
             }
-        )
-        GeneralButton(
-            onClick = { /* todo */ },
-            shape = CircleShape,
-            contentPadding = PaddingValues(0.dp),
-            modifier = childModifier
-                .size(36.dp)
-                .constrainAs(button) {
-                    linkTo(top = parent.top, bottom = parent.bottom)
-                    end.linkTo(parent.end)
-                }
-        ) {
-            Icon(
-                imageVector = Icons.Outlined.Add,
-                contentDescription = stringResource(R.string.label_add)
-            )
         }
     }
+  }
+}
+
+@Preview
+@Composable
+fun PlaceHolderPreview(){
+    Placeholder(
+        painter =  rememberImagePainter(R.drawable.ic_launcher_foreground)
+    )
 }
 
 

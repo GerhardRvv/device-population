@@ -2,7 +2,6 @@ package com.example.devicepopulation.ui.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.indication
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -18,13 +17,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.devicepopulation.ui.theme.DevicePopulationTheme
+import com.example.devicepopulation.ui.theme.DeviceAppTheme
 
 @Composable
 fun GeneralButton(
@@ -87,7 +85,7 @@ private val ButtonShape = RoundedCornerShape(percent = 50)
 @Preview("large font", "round", fontScale = 2f)
 @Composable
 private fun ButtonPreview() {
-    DevicePopulationTheme {
+    DeviceAppTheme {
         GeneralButton(onClick = {}) {
             Text(text = "Demo")
         }
@@ -99,7 +97,7 @@ private fun ButtonPreview() {
 @Preview("large font", "rectangle", fontScale = 2f)
 @Composable
 private fun RectangleButtonPreview() {
-    DevicePopulationTheme {
+    DeviceAppTheme {
         GeneralButton(
             onClick = {}, shape = RectangleShape
         ) {

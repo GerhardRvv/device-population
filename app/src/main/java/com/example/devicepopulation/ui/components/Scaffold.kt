@@ -8,10 +8,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
-import com.example.devicepopulation.ui.theme.DevicePopulationTheme
+import com.example.devicepopulation.ui.theme.DeviceAppTheme
 
 /**
- * Wrap Material [androidx.compose.material.Scaffold] and set [DevicePopulationTheme] colors.
+ * Wrap Material [androidx.compose.material.Scaffold] and set [DeviceAppTheme] colors.
  */
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -25,13 +25,14 @@ fun DevicePopulationScaffold(
     floatingActionButtonPosition: FabPosition = FabPosition.End,
     isFloatingActionButtonDocked: Boolean = false,
     drawerContent: @Composable (ColumnScope.() -> Unit)? = null,
+    drawerGesturesEnabled: Boolean = true,
     drawerShape: Shape = MaterialTheme.shapes.large,
     drawerElevation: Dp = DrawerDefaults.Elevation,
-    drawerBackgroundColor: Color = MaterialTheme.colors.onBackground,
-    drawerContentColor: Color = MaterialTheme.colors.primary,
-    drawerScrimColor: Color = MaterialTheme.colors.primaryVariant,
-    backgroundColor: Color = MaterialTheme.colors.surface,
-    contentColor: Color = MaterialTheme.colors.onPrimary,
+    drawerBackgroundColor: Color = DeviceAppTheme.colors.uiBackground,
+    drawerContentColor: Color = DeviceAppTheme.colors.textSecondary,
+    drawerScrimColor: Color = DeviceAppTheme.colors.uiBorder,
+    backgroundColor: Color = DeviceAppTheme.colors.uiBackground,
+    contentColor: Color = DeviceAppTheme.colors.textSecondary,
     content: @Composable (PaddingValues) -> Unit
 ) {
     Scaffold(
@@ -44,6 +45,7 @@ fun DevicePopulationScaffold(
         floatingActionButtonPosition = floatingActionButtonPosition,
         isFloatingActionButtonDocked = isFloatingActionButtonDocked,
         drawerContent = drawerContent,
+        drawerGesturesEnabled = drawerGesturesEnabled,
         drawerShape = drawerShape,
         drawerElevation = drawerElevation,
         drawerBackgroundColor = drawerBackgroundColor,

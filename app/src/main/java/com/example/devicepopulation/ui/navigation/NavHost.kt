@@ -9,32 +9,31 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.devicepopulation.ui.navigation.AppScreens.DeviceList
 import com.example.devicepopulation.ui.navigation.AppScreens.Details
-import com.example.devicepopulation.viewmodel.MainActivityViewModel
+import com.example.devicepopulation.ui.devices.DeviceListViewModel
 
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.getValue
 import androidx.navigation.compose.rememberNavController
-import com.example.devicepopulation.ui.home.list.DeviceListView
-import com.example.devicepopulation.ui.main.DeviceDetailsScreen
+import com.example.devicepopulation.ui.devicedetails.DeviceDetailsViewModel
+import com.example.devicepopulation.ui.devices.DeviceListView
+import com.example.devicepopulation.ui.devicedetails.DeviceDetailsScreen
 
 @Composable
 fun DevicePopulationNavHost(
-    viewModel: MainActivityViewModel,
+    deviceListViewModel: DeviceListViewModel,
+    deviceDetailsViewModel: DeviceDetailsViewModel,
     navController: NavHostController = rememberNavController(),
     modifier: Modifier = Modifier,
-//    upPress: () -> Unit
 ) {
     NavHost(
         navController = navController,
         startDestination = DeviceList.name,
         modifier = modifier
     ) {
-        composable(route= DeviceList.name) { from ->
+        composable(route= DeviceList.name) {
             DeviceListView(
-                viewModel = viewModel,
+                viewModel = deviceListViewModel,
                 onDeviceClick = { device: Long ->
                     navigateToDeviceDetails(navController = navController, deviceId = device)
-                },
+                }
             )
         }
         composable(
@@ -46,9 +45,9 @@ fun DevicePopulationNavHost(
             )
         ) { backStackEntry ->
             DeviceDetailsScreen(
-                viewModel = viewModel,
+                viewModel = deviceDetailsViewModel,
                 deviceId = backStackEntry.arguments?.getLong("deviceId"),
-//                upPress = upPress
+                upPress = {navController.popBackStack()}
             )
         }
     }
