@@ -21,18 +21,18 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun providesDeviceService(): INetworkDevicesService{
+    fun providesDeviceService(): INetworkDevicesService {
         return Retrofit.Builder()
             .baseUrl("https://gist.githubusercontent.com/GerhardRvv/")
             .addConverterFactory(MoshiConverterFactory.create().asLenient())
             .client(httpClient.build())
             .build()
-            .create(INetworkDevicesService::class.java)}
-
+            .create(INetworkDevicesService::class.java)
+    }
 
     @Singleton
     @Provides
-    fun providesOkHttpClient(): OkHttpClient{
+    fun providesOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(RequestInterceptor())
             .build()

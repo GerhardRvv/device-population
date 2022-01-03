@@ -64,10 +64,25 @@ val Neutral2 = Color(0x61ffffff)
 val Neutral1 = Color(0xbdffffff)
 val Neutral0 = Color(0xffffffff)
 
-val FunctionalRed = Color(0xffd00036)
+val FunctionalRed = Color(0xffFF4C29)
 val FunctionalRedDark = Color(0xffea6d7e)
-val FunctionalGreen = Color(0xff52c41a)
+val FunctionalGreen = Color(0xff16C79A)
 val FunctionalGrey = Color(0xfff6f6f6)
 val FunctionalDarkGrey = Color(0xff2e2e2e)
+
+val blue1 = Color(0xff272643)
+val blue2 = Color(0xff2c698d)
+val blue3 = Color(0xffbae8e8)
+val blue4 = Color(0xffe3f6f5)
+
+// val lightBackground = Color(0xffECE2E1)
+val lightBackground = Color(0xff986D8E)
+val lightCard = Color(0xff6B7AA1)
+
+val toolBar = Color(0xff8F4068)
+val cards = Color(0xff334756)
+val text = Color(0xffe3f6f5)
+val red = Color(0xffFF4C29)
+val gold = Color(0xffFFD523)
 
 const val AlphaNearOpaque = 0.95f

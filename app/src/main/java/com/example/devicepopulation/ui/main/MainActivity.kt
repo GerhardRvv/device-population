@@ -5,13 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.core.view.WindowCompat
-import com.example.devicepopulation.ui.navigation.DevicePopulationNavHost
-import com.example.devicepopulation.ui.devices.DeviceListViewModel
-import dagger.hilt.android.AndroidEntryPoint
 import com.example.devicepopulation.ui.devicedetails.DeviceDetailsViewModel
+import com.example.devicepopulation.ui.devices.DeviceListViewModel
+import com.example.devicepopulation.ui.navigation.DevicePopulationNavHost
 import com.example.devicepopulation.ui.theme.DeviceAppTheme
 import com.google.accompanist.insets.ProvideWindowInsets
-
+import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -27,7 +26,6 @@ class MainActivity : ComponentActivity() {
 
     private fun updateUI() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
         setContent {
             ProvideWindowInsets {
                 DeviceAppTheme {

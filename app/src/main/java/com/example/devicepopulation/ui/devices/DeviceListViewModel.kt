@@ -1,8 +1,8 @@
 package com.example.devicepopulation.ui.devices
 
 import android.app.Application
-
-import androidx.compose.runtime.*
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.devicepopulation.data.models.DeviceModel
@@ -18,19 +18,20 @@ class DeviceListViewModel @Inject constructor(
     private val repository: DeviceRepository
 ) : AndroidViewModel(application) {
 
-    val devices : MutableState<List<DeviceModel>> = mutableStateOf(listOf())
-    val devicesSearch : MutableState<List<DeviceModel>> = mutableStateOf(listOf())
+    val devices: MutableState<List<DeviceModel>> = mutableStateOf(listOf())
+    val devicesSearch: MutableState<List<DeviceModel>> = mutableStateOf(listOf())
     val loading = mutableStateOf(false)
 
     init {
         fetchDevices(false)
     }
 
-    fun fetchDevices(forceFetch : Boolean){
+    fun fetchDevices(forceFetch: Boolean) {
         viewModelScope.launch {
             loading.value = true
-            delay(2000) //Simulate Network waiting call to display Shimmer
-            val result = if (forceFetch) repository.forceFetchDevices() else repository.fetchDevices()
+            delay(2000) // Simulate Network waiting call to display Shimmer
+            val result =
+                if (forceFetch) repository.forceFetchDevices() else repository.fetchDevices()
             if (result != null) {
                 devices.value = result
                 loading.value = false
@@ -39,11 +40,10 @@ class DeviceListViewModel @Inject constructor(
         }
     }
 
-    fun fetchDevicesByName(name: String?){
+    fun fetchDevicesByName(name: String?) {
         viewModelScope.launch {
             val result = repository.fetchDeviceByName(name)
             if (result != null) devicesSearch.value = result
         }
     }
 }
-

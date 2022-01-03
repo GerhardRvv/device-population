@@ -19,7 +19,7 @@ object DataModule {
     @Provides
     fun providesPersistenceDataService(
         deviceDao: DeviceDao
-    ) : IDataService{
+    ): IDataService {
         return PersistenceDataService(deviceDao)
     }
 

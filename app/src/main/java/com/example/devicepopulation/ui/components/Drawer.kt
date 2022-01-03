@@ -2,20 +2,26 @@ package com.example.devicepopulation.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScaffoldState
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.List
+import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.outlined.Warning
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.ImagePainter
 import com.example.devicepopulation.R
 import com.example.devicepopulation.ui.theme.DeviceAppTheme
 import kotlinx.coroutines.CoroutineScope
@@ -42,43 +48,34 @@ fun DeviceAppDrawer(
             )
             for (screen in screens) {
                 Spacer(Modifier.height(24.dp))
-                Row() {
+                Row(
+                    Modifier.clickable {
+                        onDrawerOptionClicked(screen)
+                        scope.launch {
+                            scaffoldState.drawerState.close()
+                        }
+                    }
+                ) {
                     Icon(
                         modifier = Modifier
-                            .padding( top = 4.dp, end = 10.dp),
-                            imageVector = when(screen) {
-                                "Home" -> Icons.Outlined.Home
-                                "My Devices" -> Icons.Outlined.List
-                                "Settings" -> Icons.Outlined.Settings
-                                else -> Icons.Outlined.Warning
-                            },
-
-                        tint = DeviceAppTheme.colors.textHelp,
-                        contentDescription = stringResource(id = R.string.cd_menu),
+                            .padding(top = 4.dp, end = 24.dp),
+                        imageVector = when (screen) {
+                            stringResource(id = R.string.drawer_option_home) -> Icons.Outlined.Home
+                            stringResource(id = R.string.drawer_option_my_devices) -> Icons.Outlined.List
+                            stringResource(id = R.string.drawer_option_my_settings) -> Icons.Outlined.Settings
+                            else -> Icons.Outlined.Warning
+                        },
+                        tint = DeviceAppTheme.colors.textLink,
+                        contentDescription = stringResource(id = R.string.drawer_option_button),
                     )
                     Text(
                         text = screen,
                         color = DeviceAppTheme.colors.textPrimary,
-                        style = MaterialTheme.typography.h4,
-                        modifier = Modifier.clickable {
-                            onDrawerOptionClicked(screen)
-                            scope.launch {
-                                scaffoldState.drawerState.close()
-                            }
-                        }
+                        style = MaterialTheme.typography.h5
                     )
-
                 }
                 DevicePopulationDivider()
             }
         }
     }
 }
-
-//@Preview(showSystemUi = true, showBackground = true)
-//@Composable
-//fun DeviceDrawerPreview() {
-//    DeviceAppTheme{
-//        DeviceAppDrawer(onDrawerOptionClicked = {}, scaffoldState = ScaffoldState., scope = scope)
-//    }
-//}

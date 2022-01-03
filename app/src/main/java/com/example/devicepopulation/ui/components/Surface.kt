@@ -20,10 +20,6 @@ import androidx.compose.ui.zIndex
 import com.example.devicepopulation.ui.theme.DeviceAppTheme
 import kotlin.math.ln
 
-/**
- * An alternative to [androidx.compose.material.Surface] utilizing
- * [com.example.devicepopulation.ui.theme.DevicePopulationColors]
- */
 @Composable
 fun DevicePopulationSurface(
     modifier: Modifier = Modifier,
@@ -50,9 +46,7 @@ fun DevicePopulationSurface(
 
 @Composable
 private fun getBackgroundColorForElevation(color: Color, elevation: Dp): Color {
-    return if (elevation > 0.dp // && https://issuetracker.google.com/issues/161429530
-    // DevicePopulationTheme.colors.isDark //&&
-    // color == DevicePopulationTheme.colors.uiBackground
+    return if (elevation > 0.dp
     ) {
         color.withElevation(elevation)
     } else {

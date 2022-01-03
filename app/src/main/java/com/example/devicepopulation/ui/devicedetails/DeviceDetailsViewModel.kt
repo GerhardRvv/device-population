@@ -17,14 +17,18 @@ class DeviceDetailsViewModel @Inject constructor(
     private val repository: DeviceRepository
 ) : AndroidViewModel(application) {
 
-    companion object{
-        private const val ERROR_MESSAGE = "Error fetching devices"
+    val deviceDetails: MutableState<DeviceModel?> = mutableStateOf(null)
+
+    fun fetchDeviceById(deviceId: Long?) {
+        viewModelScope.launch {
+            val result = repository.fetchDeviceDetails(deviceId)
+            if (result != null) deviceDetails.value = result
+        }
     }
 
-    val deviceDetails : MutableState<DeviceModel?> = mutableStateOf(null)
-
-    fun fetchDeviceById(deviceId: Long?){
+    fun updateDeviceFavoriteStatus(isFavourite: Boolean, deviceId: Long) {
         viewModelScope.launch {
+            repository.updateFavouriteStatus(isFavourite, deviceId)
             val result = repository.fetchDeviceDetails(deviceId)
             if (result != null) deviceDetails.value = result
         }
