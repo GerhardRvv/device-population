@@ -1,14 +1,18 @@
 package com.example.devicepopulation.ui.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.MaterialTheme
-
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,7 +21,6 @@ import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import coil.compose.rememberImagePainter
 import com.example.devicepopulation.R
-
 import com.example.devicepopulation.ui.theme.DeviceAppTheme
 
 /**
@@ -30,64 +33,63 @@ fun Placeholder(
     childModifier: Modifier = Modifier,
 ) {
     Column(Modifier.padding(4.dp)) {
-    DevicePopulationSurface(
-        shape = MaterialTheme.shapes.small,
-        color = DeviceAppTheme.colors.uiBackground,
-        elevation = 2.dp,
-        modifier = modifier
+        Surface(
+            shape = MaterialTheme.shapes.small,
+            color = DeviceAppTheme.colors.uiBackground,
+            elevation = 4.dp,
         ) {
-        ConstraintLayout(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(horizontal = 24.dp)
-        ) {
-            val (image, name, button) = createRefs()
-            createVerticalChain(name, chainStyle = ChainStyle.Packed)
-
-            DevicePopulationSurface(
-                shape = CircleShape,
+            ConstraintLayout(
                 modifier = modifier
+                    .padding(horizontal = 24.dp).fillMaxWidth()
             ) {
-                Image(
-                    painter = painter,
-                    contentDescription = null,
-                    modifier = childModifier
-                        .size(100.dp)
+                val (image, name) = createRefs()
+                createVerticalChain(name, chainStyle = ChainStyle.Packed)
+
+                DevicePopulationSurface(
+                    shape = CircleShape,
+                    modifier = modifier.padding(all = 8.dp)
                         .constrainAs(image) {
                             linkTo(
                                 top = parent.top,
-                                topMargin = 16.dp,
+                                topMargin = 4.dp,
                                 bottom = parent.bottom,
-                                bottomMargin = 16.dp
+                                bottomMargin = 4.dp
                             )
                             start.linkTo(parent.start)
-                        },
-                    contentScale = ContentScale.Crop,
-                    alignment = Alignment.Center
-                )
+                        }
+                ) {
+                    Image(
+                        painter = painter,
+                        contentDescription = null,
+                        contentScale = ContentScale.Crop,
+                        modifier = childModifier.size(60.dp),
+                        alignment = Alignment.Center
+                    )
+                }
                 Image(
                     painter = painter,
                     contentDescription = null,
-                    modifier = childModifier.constrainAs(name) {
-                        linkTo(
-                            start = image.end,
-                            end = parent.end,
-                            startMargin = 16.dp
-                        )
-                    }
+                    modifier = childModifier.height(30.dp).width(200.dp).size(20.dp)
+                        .constrainAs(name) {
+                            linkTo(
+                                top = parent.top,
+                                topMargin = 4.dp,
+                                bottom = parent.bottom,
+                                bottomMargin = 4.dp
+                            )
+                            start.linkTo(image.end)
+                            top.linkTo(image.top)
+                        }
                 )
             }
         }
     }
-  }
 }
 
 @Preview
 @Composable
-fun PlaceHolderPreview(){
+fun PlaceHolderPreview() {
     Placeholder(
-        painter =  rememberImagePainter(R.drawable.ic_launcher_foreground)
+        painter = rememberImagePainter(R.drawable.ic_launcher_foreground)
     )
 }
-
-

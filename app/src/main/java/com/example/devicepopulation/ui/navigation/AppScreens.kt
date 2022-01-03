@@ -1,7 +1,6 @@
 package com.example.devicepopulation.ui.navigation
 
-enum class AppScreens(
-) {
+enum class AppScreens() {
     DeviceList,
     Details;
 

@@ -1,21 +1,21 @@
 package com.example.devicepopulation.ui.components
 
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Icon
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.example.devicepopulation.R
 import com.example.devicepopulation.data.models.DeviceDetailsModel
 import com.example.devicepopulation.data.models.DeviceModel
 import com.example.devicepopulation.ui.theme.DeviceAppTheme
@@ -24,14 +24,12 @@ import com.example.devicepopulation.ui.theme.DeviceAppTheme
 fun DeviceCardComponent(
     device: DeviceModel,
     onDeviceClick: (Long) -> Unit,
-    showDivider: Boolean,
     modifier: Modifier = Modifier
 ) {
     Box(Modifier.padding(4.dp)) {
-        DevicePopulationSurface(
+        Surface(
             shape = MaterialTheme.shapes.small,
-            color = DeviceAppTheme.colors.uiBackground,
-            contentColor = DeviceAppTheme.colors.textPrimary,
+            color = DeviceAppTheme.colors.brand,
             elevation = 4.dp
         ) {
             ConstraintLayout(
@@ -40,21 +38,13 @@ fun DeviceCardComponent(
                     .clickable { onDeviceClick(device.id) }
                     .padding(horizontal = 24.dp)
             ) {
-                val (divider, image, name, tag, priceSpacer, price, add) = createRefs()
+                val (image, name, tag, priceSpacer, price, add) = createRefs()
                 createVerticalChain(name, tag, priceSpacer, price, chainStyle = ChainStyle.Packed)
-                if (showDivider) {
-                    DevicePopulationDivider(
-                        Modifier.constrainAs(divider) {
-                            linkTo(start = parent.start, end = parent.end)
-                            top.linkTo(parent.top)
-                        }
-                    )
-                }
                 DeviceImage(
                     imageUrl = device.image,
                     contentDescription = null,
                     modifier = Modifier
-                        .size(100.dp)
+                        .size(60.dp)
                         .constrainAs(image) {
                             linkTo(
                                 top = parent.top,
@@ -102,8 +92,8 @@ fun DeviceCardComponent(
                 )
                 Text(
                     text = device.status,
-                    style = MaterialTheme.typography.subtitle1,
-                    color = DeviceAppTheme.colors.textPrimary,
+                    style = MaterialTheme.typography.subtitle2,
+                    color = if (device.status == "Online") DeviceAppTheme.colors.online else DeviceAppTheme.colors.error,
                     modifier = Modifier.constrainAs(price) {
                         linkTo(
                             start = image.end,
@@ -114,22 +104,6 @@ fun DeviceCardComponent(
                         )
                     }
                 )
-                GeneralButton(
-                    onClick = { /* todo */ },
-                    shape = CircleShape,
-                    contentPadding = PaddingValues(0.dp),
-                    modifier = Modifier
-                        .size(36.dp)
-                        .constrainAs(add) {
-                            linkTo(top = parent.top, bottom = parent.bottom)
-                            end.linkTo(parent.end)
-                        }
-                ) {
-                    Icon(
-                        imageVector = Icons.Outlined.Add,
-                        contentDescription = stringResource(R.string.label_add)
-                    )
-                }
             }
         }
     }
@@ -137,25 +111,27 @@ fun DeviceCardComponent(
 
 @Preview
 @Composable
-fun DeviceCardPreview(){
-    val detailsModel = listOf(DeviceDetailsModel(
-        name = "name",
-        current_price = "34",
-        device_image_url = "https://dummyimage.com/200x200/000/fff.jpg",
-        is_favourite = true,
-        description = "Description with a long text"
-    ))
+fun DeviceCardPreview() {
+    val detailsModel = listOf(
+        DeviceDetailsModel(
+            name = "name",
+            current_price = "34",
+            device_image_url = "https://dummyimage.com/200x200/000/fff.jpg",
+            description = "Description with a long text",
+            rating = 3
+        )
+    )
     val device = DeviceModel(
         id = 1,
         type = "Type",
         name = "Name",
         status = "status",
         image = "https://dummyimage.com/100x100/000/fff.jpg",
-        details = detailsModel
+        is_favourite = true,
+        details = detailsModel,
     )
-        DeviceCardComponent(
-            device = device,
-            onDeviceClick = {},
-            showDivider = true
-        )
+    DeviceCardComponent(
+        device = device,
+        onDeviceClick = {}
+    )
 }

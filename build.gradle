@@ -11,10 +11,14 @@ buildscript {
         coil_version = "1.4.0"
         nav_compose_version = "2.4.0-beta02"
         koltin_version = "1.6.0"
+        espresso_version = "3.4.0"
+        espresso_runner_version = "1.4.0"
+        ktlint_gradle_plugin_version = '10.2.1'
     }
     repositories {
         google()
         mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:7.0.4"
@@ -22,6 +26,10 @@ buildscript {
 
         // ---- Dagger Hilt ----
         classpath "com.google.dagger:hilt-android-gradle-plugin:$dagger_hilt"
+
+        // ktlint-gradle Provides a convenient wrapper plugin over the ktlint project.
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:$ktlint_gradle_plugin_version"
+
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files

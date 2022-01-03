@@ -1,7 +1,6 @@
 package com.example.devicepopulation.di
 
 import android.content.Context
-import androidx.room.Room
 import com.example.devicepopulation.data.persistance.AppDatabase
 import com.example.devicepopulation.data.persistance.DeviceDao
 import dagger.Module
@@ -17,16 +16,15 @@ class PersistenceModule {
 
     @Singleton
     @Provides
-    fun providesDeviceDao(appDatabase: AppDatabase): DeviceDao{
+    fun providesDeviceDao(appDatabase: AppDatabase): DeviceDao {
         return appDatabase.deviceDao()
     }
 
     @Singleton
     @Provides
-    fun provideAppDatabase(@ApplicationContext context: Context) : AppDatabase{
-        return Room
-            .databaseBuilder(context, AppDatabase::class.java, "devicepopulation.db")
-            .fallbackToDestructiveMigration()
-            .build()
+    fun provideAppDatabase(
+        @ApplicationContext context: Context
+    ): AppDatabase {
+        return AppDatabase.getInstance(context)
     }
 }
