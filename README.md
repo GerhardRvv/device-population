@@ -6,6 +6,7 @@ The app was made following [MVVM (Model View View-Model)] architecture, with the
 ## Built with
 - [Jetpack Compose](https://developer.android.com/jetpack/compose) - Android’s modern toolkit for building native UI. It simplifies and accelerates UI development on Android. Quickly bring your app to life with less code, powerful tools, and intuitive Kotlin APIs..
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
+- [ktlint](https://ktlint.github.io/) - Anti-bikeshedding Kotlin linter with built-in formatter.
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - For asynchronous and more.
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes. 
 - [Room](https://developer.android.com/topic/libraries/architecture/room) - SQLite object mapping library.
