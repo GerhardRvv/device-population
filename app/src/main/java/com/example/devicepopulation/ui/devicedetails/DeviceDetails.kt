@@ -1,5 +1,6 @@
 package com.example.devicepopulation.ui.devicedetails
 
+import android.content.res.Configuration
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -85,7 +86,11 @@ fun DeviceDetailsBody(
                 contentColor = DeviceAppTheme.colors.textPrimary,
                 elevation = 4.dp
             ) {
-                Box(modifier = Modifier.fillMaxSize().align(alignment = Alignment.CenterVertically)) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .align(alignment = Alignment.CenterVertically)
+                ) {
                     Up(upPress = upPress)
                     Text(
                         text = deviceDetails.name,
@@ -95,7 +100,9 @@ fun DeviceDetailsBody(
                     )
                     IconButton(
                         onClick = onFavoriteClick,
-                        modifier = Modifier.align(alignment = CenterEnd).padding(end = 4.dp),
+                        modifier = Modifier
+                            .align(alignment = CenterEnd)
+                            .padding(end = 4.dp),
                     ) {
                         Icon(
                             imageVector = if (device.is_favourite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
@@ -152,11 +159,17 @@ fun DeviceDetailsBody(
                     rating = deviceDetails.rating
                 )
                 DevicePopulationDivider()
-                DeviceDetailText(
-                    infoTitle = stringResource(
+                Text(
+                    modifier = Modifier.padding(4.dp),
+                    text = stringResource(
                         id = R.string.detail_header_description
-                    ),
-                    detailInfo = deviceDetails.description
+                    )
+                )
+                Text(
+                    modifier = Modifier.padding(start = descriptionTextPadding),
+                    text = deviceDetails.description,
+                    style = MaterialTheme.typography.subtitle1,
+                    color = DeviceAppTheme.colors.textPrimary,
                 )
             }
         }
@@ -244,7 +257,8 @@ private fun Image(
     )
 }
 
-@Preview
+@Preview("default", showBackground = true)
+@Preview("dark theme", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun DeviceDetailsPreview() {
     val detailsModel = listOf(

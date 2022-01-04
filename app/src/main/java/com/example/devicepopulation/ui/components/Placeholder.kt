@@ -1,5 +1,6 @@
 package com.example.devicepopulation.ui.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -35,7 +36,7 @@ fun Placeholder(
     Column(Modifier.padding(4.dp)) {
         Surface(
             shape = MaterialTheme.shapes.small,
-            color = DeviceAppTheme.colors.uiBackground,
+            color = DeviceAppTheme.colors.brand,
             elevation = 4.dp,
         ) {
             ConstraintLayout(
@@ -86,7 +87,8 @@ fun Placeholder(
     }
 }
 
-@Preview
+@Preview("default", showBackground = true)
+@Preview("dark theme", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun PlaceHolderPreview() {
     Placeholder(

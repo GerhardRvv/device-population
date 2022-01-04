@@ -17,7 +17,9 @@ class DeviceRepository @Inject constructor(
             var devices = persistenceDataService.fetchDevices()
             if (devices.isNullOrEmpty()) {
                 devices = networkDataService.fetchDevices()
-                persistenceDataService.insertDevices(devices)
+                if (devices != null) {
+                    persistenceDataService.insertDevices(devices)
+                }
                 persistenceDataService.fetchDevices()
             } else {
                 devices
@@ -32,6 +34,7 @@ class DeviceRepository @Inject constructor(
         return try {
             var refreshDevices = networkDataService.fetchDevices()
             if (!refreshDevices.isNullOrEmpty()) {
+                persistenceDataService.clearDb()
                 persistenceDataService.insertDevices(refreshDevices)
                 persistenceDataService.fetchDevices()
             } else {
@@ -64,7 +67,6 @@ class DeviceRepository @Inject constructor(
     }
 
     suspend fun updateFavouriteStatus(isFavourite: Boolean, deviceId: Long) {
-        if (deviceId == null) return
         try {
             persistenceDataService.updateFavouriteStatus(isFavourite, deviceId)
         } catch (e: Exception) {
