@@ -1,8 +1,7 @@
 <h1 align="center"> Device-Population</h1>
 
 ## About
-The app was made following [***MVVM (Model View View-Model)***] architecture, with the intention to demostrate basic UI functionality achieve using Jetpack Compose, ViewModels, Room and Retrofit: The App will fetch fetch a json Gist,  store the data into a db, then display a list of clicable cards.
-The app can be swithce between Light and Dark Mode
+The app was made following [MVVM (Model View View-Model)] architecture, with the intention to demonstrate basic UI functionality achieve using Jetpack Compose, ViewModels, Room, and Retrofit: The App will fetch a JSON Gist, store the data into a DB, then display a list of clickable cards. The app can be switched between Light and Dark Mode
 
 ## Built with
 - [Jetpack Compose](https://developer.android.com/jetpack/compose) - Android’s modern toolkit for building native UI. It simplifies and accelerates UI development on Android. Quickly bring your app to life with less code, powerful tools, and intuitive Kotlin APIs..
