@@ -2,6 +2,7 @@ package com.example.devicepopulation.ui.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType.Companion.LongType
 import androidx.navigation.compose.NavHost
@@ -19,10 +20,10 @@ private const val DEVICE_ID_KEY = "deviceId"
 
 @Composable
 fun DevicePopulationNavHost(
+    navController: NavHostController = rememberNavController(),
     deviceListViewModel: DeviceListViewModel,
     deviceDetailsViewModel: DeviceDetailsViewModel,
-    navController: NavHostController = rememberNavController(),
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier
 ) {
     NavHost(
         navController = navController,

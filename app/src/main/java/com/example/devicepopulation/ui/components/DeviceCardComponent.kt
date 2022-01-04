@@ -12,6 +12,8 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ChainStyle
@@ -19,6 +21,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.devicepopulation.data.models.DeviceDetailsModel
 import com.example.devicepopulation.data.models.DeviceModel
 import com.example.devicepopulation.ui.theme.DeviceAppTheme
+import com.google.accompanist.insets.ProvideWindowInsets
 
 @Composable
 fun DeviceCardComponent(
@@ -26,7 +29,7 @@ fun DeviceCardComponent(
     onDeviceClick: (Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Box(Modifier.padding(4.dp)) {
+    Box(Modifier.padding(8.dp)) {
         Surface(
             shape = MaterialTheme.shapes.small,
             color = DeviceAppTheme.colors.brand,
@@ -41,8 +44,8 @@ fun DeviceCardComponent(
                 val (image, name, tag, priceSpacer, price, add) = createRefs()
                 createVerticalChain(name, tag, priceSpacer, price, chainStyle = ChainStyle.Packed)
                 DeviceImage(
+                    contentDescription = "Device Image",
                     imageUrl = device.image,
-                    contentDescription = null,
                     modifier = Modifier
                         .size(60.dp)
                         .constrainAs(image) {
@@ -59,29 +62,33 @@ fun DeviceCardComponent(
                     text = device.name,
                     style = MaterialTheme.typography.subtitle1,
                     color = DeviceAppTheme.colors.textPrimary,
-                    modifier = Modifier.constrainAs(name) {
-                        linkTo(
-                            start = image.end,
-                            startMargin = 16.dp,
-                            end = add.start,
-                            endMargin = 16.dp,
-                            bias = 0f
-                        )
-                    }
+                    modifier = Modifier
+                        .constrainAs(name) {
+                            linkTo(
+                                start = image.end,
+                                startMargin = 16.dp,
+                                end = add.start,
+                                endMargin = 16.dp,
+                                bias = 0f
+                            )
+                        }
+                        .semantics { contentDescription = "Device Name" }
                 )
                 Text(
                     text = device.type,
                     style = MaterialTheme.typography.body1,
                     color = DeviceAppTheme.colors.textPrimary,
-                    modifier = Modifier.constrainAs(tag) {
-                        linkTo(
-                            start = image.end,
-                            startMargin = 16.dp,
-                            end = add.start,
-                            endMargin = 16.dp,
-                            bias = 0f
-                        )
-                    }
+                    modifier = Modifier
+                        .constrainAs(tag) {
+                            linkTo(
+                                start = image.end,
+                                startMargin = 16.dp,
+                                end = add.start,
+                                endMargin = 16.dp,
+                                bias = 0f
+                            )
+                        }
+                        .semantics { contentDescription = "Device Type" }
                 )
                 Spacer(
                     Modifier
@@ -94,15 +101,17 @@ fun DeviceCardComponent(
                     text = device.status,
                     style = MaterialTheme.typography.subtitle2,
                     color = if (device.status == "Online") DeviceAppTheme.colors.online else DeviceAppTheme.colors.error,
-                    modifier = Modifier.constrainAs(price) {
-                        linkTo(
-                            start = image.end,
-                            startMargin = 16.dp,
-                            end = add.start,
-                            endMargin = 16.dp,
-                            bias = 0f
-                        )
-                    }
+                    modifier = Modifier
+                        .constrainAs(price) {
+                            linkTo(
+                                start = image.end,
+                                startMargin = 16.dp,
+                                end = add.start,
+                                endMargin = 16.dp,
+                                bias = 0f
+                            )
+                        }
+                        .semantics { contentDescription = "Device Status" }
                 )
             }
         }
@@ -130,8 +139,12 @@ fun DeviceCardPreview() {
         is_favourite = true,
         details = detailsModel,
     )
-    DeviceCardComponent(
-        device = device,
-        onDeviceClick = {}
-    )
+    ProvideWindowInsets {
+        DeviceAppTheme() {
+            DeviceCardComponent(
+                device = device,
+                onDeviceClick = {}
+            )
+        }
+    }
 }

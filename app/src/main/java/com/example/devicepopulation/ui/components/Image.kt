@@ -1,10 +1,10 @@
 package com.example.devicepopulation.ui.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -13,11 +13,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import com.example.devicepopulation.R
+import com.example.devicepopulation.ui.theme.DeviceAppTheme
 
-@OptIn(ExperimentalCoilApi::class)
 @Composable
 fun DeviceImage(
     imageUrl: String,
@@ -46,10 +45,11 @@ fun DeviceImage(
     }
 }
 
-@Preview
+@Preview("default", showBackground = true)
+@Preview("dark theme", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 fun ImageCardPreview() {
-    MaterialTheme {
+    DeviceAppTheme() {
         DeviceImage(
             imageUrl = "https://dummyimage.com/200x200/000/fff.jpg",
             contentDescription = "Description Text",

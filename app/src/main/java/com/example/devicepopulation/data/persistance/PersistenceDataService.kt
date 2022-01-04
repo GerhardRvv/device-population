@@ -8,17 +8,19 @@ class PersistenceDataService @Inject constructor(
     private val deviceDao: DeviceDao
 ) : IDataService {
 
+    override suspend fun clearDb() = deviceDao.clearDb()
+
     override suspend fun fetchDevices() = deviceDao.getDeviceList()
 
-    override suspend fun insertDevices(devices: List<DeviceModel>) =
+    override suspend fun insertDevices(devices: MutableList<DeviceModel>) =
         deviceDao.insertDeviceList(devices)
 
     override suspend fun fetchDeviceById(id: Long) =
         deviceDao.fetchDeviceById(id)
 
-    override suspend fun fetchDeviceByName(name: String): List<DeviceModel>? =
+    override suspend fun fetchDeviceByName(name: String): MutableList<DeviceModel>? =
         deviceDao.fetchDeviceByName(name)
 
-    override suspend fun updateFavouriteStatus(isFavourite: Boolean, deviceId: Long) =
-        deviceDao.setFavouriteStatus(isFavourite, deviceId)
+    override suspend fun updateFavouriteStatus(isFavourite: Boolean, id: Long) =
+        deviceDao.setFavouriteStatus(isFavourite, id)
 }

@@ -1,6 +1,5 @@
 package com.example.devicepopulation.ui.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -42,9 +41,10 @@ fun DeviceAppDrawer(
                 .fillMaxSize()
                 .padding(start = 24.dp, top = 48.dp)
         ) {
-            Image(
+            Icon(
                 painter = painterResource(R.drawable.ic_launcher_foreground),
-                contentDescription = stringResource(R.string.app_name)
+                contentDescription = stringResource(R.string.app_name),
+                tint = DeviceAppTheme.colors.iconPrimary
             )
             for (screen in screens) {
                 Spacer(Modifier.height(24.dp))

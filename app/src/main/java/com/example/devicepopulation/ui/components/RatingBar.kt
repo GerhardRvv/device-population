@@ -1,5 +1,6 @@
 package com.example.devicepopulation.ui.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -11,6 +12,7 @@ import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.devicepopulation.R
 import com.example.devicepopulation.ui.customIcons.StarBorder
@@ -40,4 +42,13 @@ fun RatingBar(
         }
     }
     DevicePopulationDivider()
+}
+
+@Preview("default", showBackground = true)
+@Preview("dark theme", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
+@Composable
+fun RatingBarPreview() {
+    DeviceAppTheme() {
+        RatingBar(rating = 4)
+    }
 }

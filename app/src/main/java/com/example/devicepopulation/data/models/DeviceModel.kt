@@ -3,6 +3,9 @@ package com.example.devicepopulation.data.models
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+/**
+ * DeviceModel data model.
+ */
 @Entity
 data class DeviceModel(
     @PrimaryKey

@@ -1,5 +1,6 @@
 package com.example.devicepopulation.ui.components
 
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,6 +36,8 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -134,7 +137,8 @@ fun SearchBar(
                         .weight(1f)
                         .onFocusChanged { focusState ->
                             onSearchFocusChange(focusState.isFocused)
-                        },
+                        }
+                        .semantics { contentDescription = "Input Search" },
                     maxLines = 1,
                     singleLine = true,
                     keyboardOptions = KeyboardOptions.Default.copy(
@@ -171,6 +175,7 @@ private fun SearchHint() {
         modifier = Modifier
             .fillMaxSize()
             .wrapContentSize()
+            .semantics { contentDescription = "hint perform search" }
     ) {
         Icon(
             imageVector = Icons.Outlined.Search,
@@ -218,7 +223,8 @@ fun NoResults(
     }
 }
 
-@Preview
+@Preview("default", showBackground = true)
+@Preview("dark theme", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 private fun SearchBarPreview() {
     DeviceAppTheme {

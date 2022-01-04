@@ -67,8 +67,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
     implementation 'androidx.activity:activity-compose:1.4.0'
 
-
-
     // -------------- Compose -----------------
 
     implementation "androidx.compose.ui:ui:$compose_version"
@@ -96,13 +94,12 @@ dependencies {
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-moshi:2.7.2"
-    implementation "com.squareup.okhttp3:logging-interceptor:4.7.2"
+    implementation "com.squareup.retrofit2:converter-moshi:2.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
 
     // -------- Dagger Hilt --------
     implementation "com.google.dagger:hilt-android:$dagger_hilt"
     kapt "com.google.dagger:hilt-android-compiler:$dagger_hilt"
-//    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_version"
 
     // -------- Room --------
@@ -118,14 +115,32 @@ dependencies {
     // --------- Test Dependencies ---------------
 
     androidTestImplementation "androidx.room:room-testing:$room_version"
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
 
-    androidTestImplementation 'junit:junit:4.+'
-
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
     androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
 
     androidTestImplementation("androidx.test:runner:$espresso_runner_version")
     androidTestImplementation("androidx.test:rules:$espresso_runner_version")
+    testImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+
+    testImplementation "junit:junit:$junit_version"
+
+    androidTestImplementation "androidx.test.ext:junit:$androidXTestExtKotlinRunnerVersion"
+    testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
+
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation("androidx.compose.ui:ui-test-manifest:$compose_version")
+
+    testImplementation "org.hamcrest:hamcrest-all:$hamcrest_version"
+
+    testImplementation "com.google.dagger:hilt-android-testing:$dagger_hilt"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$dagger_hilt"
+
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "org.mockito:mockito-inline:$mockito_version"
+
+
 }

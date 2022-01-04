@@ -1,5 +1,6 @@
 package com.example.devicepopulation.ui.devices
 
+import android.content.res.Configuration
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -83,7 +86,7 @@ private fun DeviceListView(
         scaffoldState = scaffoldState,
         topBar = {
             TopAppBar(
-                backgroundColor = DeviceAppTheme.colors.uiFloated,
+                backgroundColor = DeviceAppTheme.colors.uiBackground,
                 contentColor = DeviceAppTheme.colors.textPrimary,
                 elevation = 4.dp
             ) {
@@ -108,11 +111,12 @@ private fun DeviceListView(
         },
         drawerContent = {
             DeviceAppDrawer(
+                modifier = Modifier.semantics { contentDescription = "Drawer Menu" },
                 scaffoldState = scaffoldState,
                 scope = scope,
                 onDrawerOptionClicked = { option ->
                     Toast.makeText(context, "Option Selected $option", Toast.LENGTH_SHORT).show()
-                }
+                },
             )
         },
         drawerGesturesEnabled = true
@@ -128,7 +132,7 @@ private fun DeviceListView(
                 SwipeRefreshIndicator(
                     state = state,
                     refreshTriggerDistance = refreshTrigger,
-                    backgroundColor = DeviceAppTheme.colors.iconInteractive,
+                    backgroundColor = DeviceAppTheme.colors.brand,
                     contentColor = DeviceAppTheme.colors.textHelp
                 )
             }
@@ -194,7 +198,8 @@ private fun DeviceCollectionList(
     }
 }
 
-@Preview
+@Preview("default", showBackground = true)
+@Preview("dark theme", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Composable
 private fun DeviceListViewPreview() {
     val detailsModel = listOf(

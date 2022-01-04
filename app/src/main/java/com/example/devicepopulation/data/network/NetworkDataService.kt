@@ -8,9 +8,13 @@ class NetworkDataService @Inject constructor(
     private val devicesService: INetworkDevicesService
 ) : IDataService {
 
-    override suspend fun fetchDevices(): List<DeviceModel> = devicesService.fetchDevices()
+    override suspend fun clearDb() {
+        throw NotImplementedError()
+    }
 
-    override suspend fun insertDevices(devices: List<DeviceModel>) {
+    override suspend fun fetchDevices(): MutableList<DeviceModel>? = devicesService.fetchDevices()
+
+    override suspend fun insertDevices(devices: MutableList<DeviceModel>) {
         throw NotImplementedError()
     }
 
@@ -18,7 +22,7 @@ class NetworkDataService @Inject constructor(
         throw NotImplementedError()
     }
 
-    override suspend fun fetchDeviceByName(name: String): List<DeviceModel>? {
+    override suspend fun fetchDeviceByName(name: String): MutableList<DeviceModel>? {
         throw NotImplementedError()
     }
 
