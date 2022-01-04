@@ -1,5 +1,3 @@
-# device-population
-
 <h1 align="center"> Device-Population</h1>
 
 ## About
