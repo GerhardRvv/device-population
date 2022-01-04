@@ -1,6 +1,6 @@
 # device-population
 
-<h1 align="center"> Device-Population 🗞</h1>
+<h1 align="center"> Device-Population</h1>
 
 ## About
 The app was made following [***MVVM (Model View View-Model)***] architecture, with the intention to demostrate basic UI functionality achieve using Jetpack Compose, ViewModels, Room and Retrofit: The App will fetch fetch a json Gist,  store the data into a db, then display a list of clicable cards.
