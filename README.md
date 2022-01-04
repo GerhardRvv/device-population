@@ -10,7 +10,6 @@ The app was made following [MVVM (Model View View-Model)] architecture, with the
 - [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) - Stores UI-related data that isn't destroyed on UI changes. 
 - [Room](https://developer.android.com/topic/libraries/architecture/room) - SQLite object mapping library.
 - [Retrofit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java.
-- [RxJava](https://github.com/ReactiveX/RxAndroid)
 - [Moshi](https://github.com/square/moshi) - A modern JSON library for Kotlin and Java.
 - [Moshi Converter](https://github.com/square/retrofit/tree/master/retrofit-converters/moshi) - A Converter which uses Moshi for serialization to and from JSON.
 
